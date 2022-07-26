@@ -48,24 +48,18 @@ let accounts = [
     }
 ];
 
-
-
-
-const userInput = document.getElementById('user');
 const form = document.getElementById('form');
 
 form.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    Object.keys(accounts).forEach( key => {
-
-        if ( e.target.user.value == accounts[key].name && e.target.nip.value == accounts[key].nip ) {
-            console.log("El usuario y la contraseña coinciden!!")
-        } else {
-            console.log("El usuario es inexistente =(")
-        }
-
-    })
+    if( accounts.some( ( account ) => account.name == e.target.user.value && account.nip == e.target.nip.value ) ){
+        console.log( 'Felicidades el Usuario Existe!!' )
+    }else if( accounts.some( ( account ) => account.name == e.target.user.value ) ){
+        console.log( 'La contraseña no concuerda' )
+    } else {
+        console.log( 'No existe concordancia =(' )
+    }
 
 })
 
