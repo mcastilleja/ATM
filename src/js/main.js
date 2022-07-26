@@ -1,67 +1,67 @@
-// Cajero Automático
-// Crea una aplicación web con JavaScript donde simulemos la interacción con un cajero automático.
-// Al ingresar al cajero, puedes seleccionar la cuenta con la que deseas interactuar. Deben existir al menos tres cuentas:
-// Persona 1
-// Persona 2
-// Persona 3
-// Para esto, puedes trabajar con un arreglo de objetos como el siguiente:
-// 1
-// 2
-// 3
-// 4
-// 5
-// var cuentas = [
-//   { nombre: “Mali”, saldo: 200 }
-//   { nombre: “Gera”, saldo: 290 }
-//   { nombre: “Maui”, saldo: 67 }
-// ];
-// Al seleccionar una cuenta, debes ingresar el password asociado a la cuenta. Si el password es incorrecto, debes notificar al usuario y permitirle intentarlo nuevamente. Si el password es correcto, debes mostrar las siguientes opciones:
-// Consultar saldo
-// Ingresar monto
-// Retirar Monto
-// Al seleccionar consultar saldo, debe mostrar en pantalla el saldo actual de la cuenta
-// Al seleccionar ingresar monto, el usuario debe escribir el monto a ingresar. Al ingresar el monto, debe mostrarle al usuario el monto ingresado y el nuevo saldo total.
-// Al seleccionar retirar monto, el usuario debe escribir el monto a retirar. Al retirar el monto, debe mostrarle al usuario el monto retirado y el nuevo saldo total.
-// Como regla de negocio, una cuenta no debe de tener más de $990 y menos de $10. Es necesario hacer las validaciones pertinentes para que no se rompa esta regla de negocio.
-
-// window.location.href
-// window.location.replace('a donde dirige')
-
-// Example starter JavaScript for disabling form submissions if there are invalid fields
-
-
-let accounts = [
-    { 
-        name: 'Mali',
-        nip: '9856',
-        balance: 200 
-    },
-    { 
-        name: 'Gera', 
-        nip: '1234',
-        balance: 290 
-    },
-    { 
-        name: 'Maui', 
-        nip: '2446',
-        balance: 67 
-    }
-];
 
 const form = document.getElementById('form');
 
+const selectIdName = document.getElementById('validUser').classList;
+const selectIdNip = document.getElementById('validNip').classList;
+
+const invalidName = document.getElementById('validateUser');
+const invalidNip = document.getElementById('validateNip');
+
+// Evento al presionar submit en el formulario capturando el evento de los inputs
 form.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    if( accounts.some( ( account ) => account.name == e.target.user.value && account.nip == e.target.nip.value ) ){
-        console.log( 'Felicidades el Usuario Existe!!' )
-    }else if( accounts.some( ( account ) => account.name == e.target.user.value ) ){
-        console.log( 'La contraseña no concuerda' )
+    let userInput = e.target.validUser.value;
+    let passwInput = e.target.validNip.value;
+
+    // Se valida si en el arreglo existe al menos un valor al escrito .some
+    if( accounts.some( ( a ) => a.name == userInput && a.nip == passwInput ) ){
+
+        // Se guarda en una variable el arreglo del usuario devuelto
+        let currentUser = accounts.filter( (a) => a.name == userInput && a.nip == passwInput )[0]
+
+        // Se cambian las clases de invalido a valido en el formulario
+        selectIdName.remove('is-invalid')
+        selectIdNip.remove('is-invalid')
+        selectIdName.add('is-valid')
+        selectIdNip.add('is-valid')
+
+        // Se guarda el nombre y balance en localStorage para ser procesados en la siguiente pagina
+        localStorage.setItem( 'name', currentUser.name );
+        localStorage.setItem( 'balance', currentUser.balance );
+        window.location.href="atm.html"
+
+    // En caso de que unicamente el usuario coincida mandar mensajes de error en contraseña
+    } else if( accounts.some( ( a ) => a.name == userInput && a.nip != passwInput ) ){
+
+        // Se intercambian las clases removiendo las anteriores
+        selectIdName.remove('is-invalid')
+        selectIdNip.remove('is-valid')
+        selectIdName.add('is-valid')
+        selectIdNip.add('is-invalid')
+
+        // Limpia y arroja el mensaje correspondiente de error en el formulario
+        invalidNip.innerHTML = "";
+        invalidNip.innerHTML = "Ingresa una contraseña valida";
+    
+    // En caso de que no coincida ningun campo mandar errores dentro del formulario 
     } else {
-        console.log( 'No existe concordancia =(' )
+
+        // Se intercambian las clases removiendo las anteriores
+        selectIdName.remove('is-valid')
+        selectIdNip.remove('is-valid')
+        selectIdName.add('is-invalid')
+        selectIdNip.add('is-invalid')
+
+        // Limpia y arroja los mensajes correspondiente de error en el formulario
+        invalidName.innerHTML = "";
+        invalidNip.innerHTML = "";
+        invalidName.innerHTML = "Es necesario un nombre de usuario valido";
+        invalidNip.innerHTML = "Ingresa una contraseña valida";
+        
     }
 
-})
+});
 
 
 
@@ -69,22 +69,3 @@ form.addEventListener('submit', (e) => {
 
 
 
-/* FUNCION PARA ALERTAS */
-// (() => {
-//     'use strict'
-  
-//     // Fetch all the forms we want to apply custom Bootstrap validation styles to
-//     const forms = document.querySelectorAll('.needs-validation')
-  
-//     // Loop over them and prevent submission
-//     Array.from(forms).forEach(form => {
-//       form.addEventListener('submit', event => {
-//         if (!form.checkValidity()) {
-//           event.preventDefault()
-//           event.stopPropagation()
-//         }
-  
-//         form.classList.add('was-validated')
-//       }, false)
-//     })
-//   })()
