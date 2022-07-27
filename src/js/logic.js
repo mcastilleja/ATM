@@ -28,7 +28,7 @@ formWerehouse.addEventListener('submit', (e) => {
     
     setTimeout (function() {
         location.reload(true);
-      }, 3000);
+      }, 2300);
 
 });
 
@@ -40,7 +40,7 @@ formWithdrawal.addEventListener('submit', (e) => {
     
     setTimeout (function() {
         location.reload(true);
-      }, 3000);
+      }, 2300);
 
 });
 
