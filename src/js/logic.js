@@ -6,7 +6,7 @@ const exitAtm = document.getElementById('exit');
 const myBalance = document.getElementById('balance');
 const insertName = document.getElementById('realName');
 
-
+// Condicion para cargar pagina de usuario o regresar al login si no se encuentra datos en el localStorage
 if ( userName != null ){
     insertName.innerHTML = userName;
     myBalance.innerHTML = `$${userBalance}`;
@@ -15,9 +15,11 @@ if ( userName != null ){
     window.location.href="index.html"
 }
 
-
+// Boton para salir y limpiar la sesión de localStorage
 exitAtm.addEventListener('click', (e) => {
+    // Limpia localStorage
     localStorage.clear();
+    // Redirige al login
     window.location.href="index.html"
 })
 

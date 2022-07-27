@@ -33,10 +33,83 @@
             </div>
     </header>
     <main class="container-sm mt-5">
-      <section class="">
+      <section>
         <h1 class="text-white">Tu saldo actual es:&nbsp;<span class="text-danger" id="balance"></span></h1>
-        
+        <div id="alertText" class="alert" role="alert">
+        </div>
       </section>
+      <section class="row mt-2">
+        <article id="werehouse" style="cursor: pointer;" class="col mt-5" data-bs-toggle="modal" data-bs-target="#modalWerehouse">
+          <div class="card text-center p-5">
+            <div class="card-body">
+              <img src="./src/img/warehouse.png" alt="Deposito de Saldo">
+              <h5 class="mt-3 card-title">Deposito de Saldo</h5>
+            </div>
+          </div>
+        </article>
+        <article id="withdrawal" style="cursor: pointer;" class="col mt-5" data-bs-toggle="modal" data-bs-target="#modalWithdrawal">
+          <div class="card text-center p-5">
+            <div class="card-body">
+              <img src="./src/img/withdrawal.png" alt="Retirar Monto">
+              <h5 class="mt-3 card-title">Retirar Monto</h5>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <!-- Modal Deposito -->
+      <div class="modal fade" id="modalWerehouse" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalWerehouseLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modalWerehouseLabel">Deposito de Saldo</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form>
+              <div class="modal-body">
+
+                <div class="mb-3">
+                  <label class="form-label">Cantidad a Depositar</label>
+                  <input type="text" class="form-control" id="amountWerehouse">
+                </div>
+
+              </div>
+              <div class="modal-footer">
+                <button type="submit" id="confirmWerehouse" class="btn btn-primary">Depositar</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal Retiro -->
+      <div class="modal fade" id="modalWithdrawal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalWithdrawalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modalWithdrawalLabel">Retirar Monto</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form>
+              <div class="modal-body">
+
+                <div class="mb-3">
+                  <label class="form-label">Saldo a Retirar</label>
+                  <input type="text" class="form-control" id="amountWithdrawal">
+                </div>
+
+              </div>
+              <div class="modal-footer">
+                <button type="submit" id="confirmWithdrawal" class="btn btn-primary">Retirar</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+
     </main>
     <footer class="position-fixed bottom-0 end-0 p-5">
       <button type="button" id="exit" class="btn btn-secondary btn-lg">Terminar Transacciones</button>
