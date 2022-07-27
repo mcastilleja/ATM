@@ -15,7 +15,7 @@ let accounts = [
         balance: 67 
     },
     { 
-        name: 'Miguel', 
+        name: 'Usuario', 
         nip: '1234',
         balance: 10 
     }
