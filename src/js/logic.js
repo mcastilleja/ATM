@@ -10,8 +10,6 @@ const formWerehouse = document.getElementById('formWerehouse');
 const formWithdrawal = document.getElementById('formWithdrawal')
 const alertMessage = document.getElementById('alertText')
 
-const cleanInput = document.querySelectorAll('input[type=text]')
-
 // Condicion para cargar pagina de usuario o regresar al login si no se encuentra datos en el localStorage
 if ( userName != null ){
     insertName.innerHTML = userName;
