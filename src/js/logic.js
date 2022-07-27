@@ -50,11 +50,15 @@ const add = ( value ) => {
 
     // Se parsea el valor de userBalance a un numero
     let numberBalance = parseInt(userBalance);
-    let addBalance = parseInt(value) + numberBalance;
+    let addBalance;
 
-    console.log( typeof(value))
+    if ( !isNaN(parseInt(value)) ) {
+        addBalance = parseInt(value) + numberBalance;
+    } else {
+        addBalance = parseInt(value);
+    }
 
-    if( addBalance <= 990  && Math.sign(value) != -1 && value != "" ){
+    if( !isNaN(addBalance) && addBalance <= 990  && Math.sign(value) != -1 && value != "" && value != 0 ){
 
         let newBalance = addBalance;
 
@@ -62,7 +66,7 @@ const add = ( value ) => {
         localStorage.setItem('balance',  newBalance)
         alertMessage.innerHTML = `Se ha echo un anexo a su cuenta de $${ value }, dajando un total de: $${ newBalance }`
 
-    } else if( Math.sign(value) == -1 || value == "" ){
+    } else if( isNaN(addBalance) || Math.sign(value) == -1 || value == "" || value == 0){
         
         alertMessage.classList.add('alert-danger')
         alertMessage.innerHTML = `Lo sentimos el numero ingresado no es un valor valido`
@@ -80,9 +84,15 @@ const subtract = ( value ) => {
     
     // Se parsea el valor de userBalance a un numero
     let numberBalance = parseInt(userBalance);
-    let substracBalance = numberBalance - parseInt(value);
+    let substracBalance;
 
-    if ( substracBalance >= 10 && Math.sign(value) != -1 && value != "" ) {
+    if ( !isNaN(parseInt(value)) ) {
+        substracBalance = numberBalance - parseInt(value);
+    } else {
+        substracBalance = parseInt(value);
+    }
+
+    if ( !isNaN(substracBalance) && substracBalance >= 10 && Math.sign(value) != -1 && value != "" && value != 0 ) {
 
         let newBalance = substracBalance;
 
@@ -90,7 +100,7 @@ const subtract = ( value ) => {
         localStorage.setItem('balance',  newBalance)
         alertMessage.innerHTML = `Se ha un retiro satisfactorio de $${ value }, dajando un total de: $${ newBalance }`
 
-    } else if( Math.sign(value) == -1 || value == "" ){
+    } else if( isNaN(substracBalance) || Math.sign(value) == -1 || value == "" || value == 0 ){
         
         alertMessage.classList.add('alert-danger')
         alertMessage.innerHTML = `Lo sentimos el numero ingresado no es un valor valido`
