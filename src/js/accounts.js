@@ -1,17 +1,17 @@
 let accounts = [
     { 
         name: 'Mali',
-        nip: '9856',
+        nip: '1111',
         balance: 200 
     },
     { 
         name: 'Gera', 
-        nip: '6734',
+        nip: '2222',
         balance: 290 
     },
     { 
         name: 'Maui', 
-        nip: '2446',
+        nip: '3333',
         balance: 67 
     }
 ];
