@@ -13,10 +13,5 @@ let accounts = [
         name: 'Maui', 
         nip: '2446',
         balance: 67 
-    },
-    { 
-        name: 'Usuario', 
-        nip: '1234',
-        balance: 10 
     }
 ];
